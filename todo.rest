@@ -1,0 +1,34 @@
+
+###
+
+POST http://localhost:3000/api/todos
+Content-Type: application/json
+
+{
+    "userId":"6015b83f47ccfa3250d94e71",
+    "title":"todo1 for test",
+    "body":"bodyOfTodo",
+    "tags":["t1,t2"]
+    
+}
+
+
+###
+GET http://localhost:3000/api/todos/6014cbdc6f19a5074855dbef
+
+###
+GET http://localhost:3000/api/todos?limit=10&skip=0
+
+###
+PATCH http://localhost:3000/api/todos/6014dab95f37a51f00a48d76
+Content-Type: application/json
+
+{
+    "userId":"6014cbdc6f19a5074855dbef",
+    "title":"todo edited for test",
+    "body":"bodyOfTodo",
+    "tags":["t2,t3"]
+}
+
+###
+DELETE http://localhost:3000/api/todos/6014dab95f37a51f00a48d76

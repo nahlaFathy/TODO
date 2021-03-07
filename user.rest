@@ -1,0 +1,42 @@
+GET http://localhost:3000/api/users
+
+
+###
+
+POST http://localhost:3000/api/users/register
+Content-Type: application/json
+
+{
+    "username":"sara.com",
+    "password":"3214",
+    "firstname":"sara",
+    "age":"23"
+}
+
+###
+POST http://localhost:3000/api/users/login
+Content-Type: application/json
+
+{
+    "username":"hana.com",
+    "password":"3214"
+}
+
+###
+
+PATCH http://localhost:3000/api/users/600ece3e1747301553ed5378
+Content-Type: application/json
+
+{
+    "username":"mennah.com",
+    "password":"2587",
+    "firstname":"mennah",
+    "age":23
+}
+
+###
+
+
+DELETE http://localhost:3000/api/users/600ece3e1747301553ed5378
+
+
