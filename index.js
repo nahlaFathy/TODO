@@ -46,6 +46,6 @@ app.use((req, res, next) => {
   app.use('/api/todos',todo)
   app.use('/api/users',auth)
 
-app.listen(port)
+app.listen(process.env.PORT||port)
 
 
