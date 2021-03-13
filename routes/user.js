@@ -50,6 +50,7 @@ body('password').isLength({ min: 1 })
   
     const users= await User.find()
     ////res.setHeader('Access-Control-Allow-Origin', 'http://localhost:4200');
+    
      return res.json( users)
  
     })
@@ -63,6 +64,7 @@ body('password').isLength({ min: 1 })
    .withMessage('password is required') ,auth,async(req, res) => {
  
     const loginedID=req.user._id
+   
     const user= await User.findByIdAndUpdate(loginedID,{
         $set:{
          username:req.body.username,

@@ -14,8 +14,8 @@ router.post('/',
 body('title').isLength({ min: 1 })
 .withMessage('title is required')
 , body('body').isLength({ min: 1 })
-.withMessage('body is required')
-, async(req, res) => {
+.withMessage('body is required'),auth,
+ async(req, res) => {
   
        const errors = validationResult(req); 
        if (!errors.isEmpty()) return res.status(400).send({error: errors.errors[0].msg }); 
@@ -33,7 +33,7 @@ body('title').isLength({ min: 1 })
     try{
      
         await todo.save()
-       res.send({message:'a new todo is added successfully'}) 
+       res.send({todo}) 
     }
     catch(err){
         res.send({error:err}) 
@@ -42,25 +42,17 @@ body('title').isLength({ min: 1 })
   })
 
   //////////////////////////////////////// 2 ////////////////////////////////////////////
-  router.get('/:userId',auth,  async(req, res)=> {
+  router.get('/',auth,  async(req, res)=> {
     
-    const todo= await Todo.find({userId:req.params.userId})
-      if(todo) return res.send('Todo for user id :' + 
-      req.params.userId+' is ' +todo)
+    const loginedID=req.user._id
+    console.log(loginedID);
+    const todo= await Todo.find({userId:loginedID})
+      if(todo) return res.send(todo)
  
     })
 
-/////////////////////////////////3/////////////////////////////////
 
-router.get('/',  async(req, res)=> {
-     console.log(req.query)
-    const todo= await Todo.find()
-      if(todo){
-      res.setHeader('Access-Control-Allow-Origin', 'http://localhost:4200');
-      return res.json(todo)
-    } 
- 
-    })
+
 
 ////////////////////////// 4  /////////////////////////////////////////////
 
@@ -76,13 +68,13 @@ router.patch('/:id',auth, async(req, res) => {
   
       if(todo.userId==req.user._id)
         {
-          if(!mongoose.Types.ObjectId.isValid(req.body.userId))
+          if(!mongoose.Types.ObjectId.isValid(req.user._id))
           return res.status(400).send({error: 'invalid user id' }); 
-          const userid=await User.findById(req.body.userId)
+          const userid=await User.findById(req.user._id)
           if(!userid) return res.status(404).send('this user id is not exist')
           const updated= await Todo.updateOne(todo,{
             $set:{
-             userId:req.body.userId,
+             userId:req.user._id,
              title:req.body.title,
              body:req.body.body,
              status:req.body.status,

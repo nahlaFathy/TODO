@@ -32,8 +32,7 @@ body('password').isLength({ min: 1 })
         console.log(user._id)
         const token=jwt.sign({_id:user._id},process.env.SECRET_KEY)
        
-     return res.header('x-user-token',token).send({message:'user was logined successfully',email:user.email,
-         latestTodos:todos ,token:token}) 
+     return res.header('x-user-token',token).json({token}) 
     
   })
 

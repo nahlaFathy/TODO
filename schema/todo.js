@@ -7,9 +7,9 @@ const todoSchema=new mongoose.Schema({
         ref:'users'  ,
         required:true 
     },
-    title:{type:String,required:true,minlength:10,maxlength:20},
+    title:{type:String,required:true,minlength:5,maxlength:20},
     body:{type:String,required:true,minlength:10,maxlength:500},
-    status:{type:String, enum:['Pending','In Progress','Done','Close'],default:'Pending'},
+    status:{type:String,default:'Pending'},
     createdAt:{type:Date,default:Date.now},
     updatedAt:{type:Date}
   
