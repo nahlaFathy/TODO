@@ -38,7 +38,11 @@ app.use((req, res, next) => {
     res.status(500).send({ error: 'internal server error' })
     next(err);
   });
-  
+  app.use(express.static(__dirname + '/dist/<name-of-app>'));
+  app.get('/*', function(req,res) {
+    
+    res.sendFile(path.join(__dirname+'/dist/<name-of-app>/index.html'));
+    });
   app.use(express.json());
   app.use(express.urlencoded({ extended: true }));
   app.use(cors())
