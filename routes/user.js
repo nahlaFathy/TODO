@@ -47,15 +47,12 @@ body('password').isLength({ min: 1 })
 
 ///////////////////////////////////////// 3 ////////////////////////////////////////////
   router.get('/', async(req, res,next)=> {
-   try{
+ 
     const users= await User.find()
     
     return res.json( users)
-   }
-   catch(err)
-   {
-     next(err);
-   }
+   
+ 
  
     })
 
