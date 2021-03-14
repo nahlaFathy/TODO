@@ -46,11 +46,10 @@ body('password').isLength({ min: 1 })
 
 
 ///////////////////////////////////////// 3 ////////////////////////////////////////////
-  router.get('/', async(req, res,next)=> {
- 
-    const users= await User.find()
-    if(users)
-    return res.json( users)
+  router.get('/',auth, async(req, res,next)=> {
+    const loginedID=req.user._id
+    const users= await User.find({_id:loginedID})
+    if(users) return res.send( users)
    
  
  
