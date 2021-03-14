@@ -49,7 +49,7 @@ body('password').isLength({ min: 1 })
   router.get('/', async(req, res,next)=> {
  
     const users= await User.find()
-    
+    if(users)
     return res.json( users)
    
  
