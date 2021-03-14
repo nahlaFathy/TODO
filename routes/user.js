@@ -46,12 +46,16 @@ body('password').isLength({ min: 1 })
 
 
 ///////////////////////////////////////// 3 ////////////////////////////////////////////
-  router.get('/', async(req, res)=> {
-  
+  router.get('/', async(req, res,next)=> {
+   try{
     const users= await User.find()
-    ////res.setHeader('Access-Control-Allow-Origin', 'http://localhost:4200');
     
-     return res.json( users)
+    return res.json( users)
+   }
+   catch(err)
+   {
+     next(err);
+   }
  
     })
 
