@@ -15,7 +15,7 @@ if(!process.env.SECRET_KEY)
   process.exit(1)
 }
 
-mongoose.connect("mongodb+srv://todo:todo@cluster0.wrga0.mongodb.net/myFirstDatabase?retryWrites=true&w=majority",{useNewUrlParser: true , useUnifiedTopology: true})
+mongoose.connect("mongodb+srv://TodoITI:TODOITI@cluster0.wrga0.mongodb.net/myFirstDatabase?retryWrites=true&w=majority",{useNewUrlParser: true , useUnifiedTopology: true})
 .then(()=> console.log('connected to MongodDB ...'))
 .catch((err)=>console.error('can not connect to MongoDB',err))
 
